@@ -8,6 +8,11 @@
   "parserOptions": {
     "project": ["./tsconfig.json", "./packages/*/tsconfig.json"]
   },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
