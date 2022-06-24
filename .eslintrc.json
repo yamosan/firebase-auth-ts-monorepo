@@ -10,7 +10,9 @@
   },
   "settings": {
     "import/resolver": {
-      "typescript": {}
+      "typescript": {
+        "project": ["./tsconfig.json", "./packages/*/tsconfig.json"] // https://github.com/import-js/eslint-plugin-import/issues/2301
+      }
     }
   },
   "extends": [
