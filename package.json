@@ -1,5 +1,5 @@
 {
-  "name": "firebase-auth-example",
+  "name": "firebase-auth-ts-monorepo",
   "private": true,
   "scripts": {
     "format": "prettier --check .",
