@@ -8,6 +8,7 @@ async function main() {
     update: {},
     create: {
       name: "user1",
+      age: 20,
     },
   });
 
@@ -16,6 +17,7 @@ async function main() {
     update: {},
     create: {
       name: "user2",
+      age: 20
     },
   });
 
