@@ -1,8 +1,13 @@
 module.exports = {
-  extends: ["../../.eslintrc.json"],
+  extends: ["../../.eslintrc.cjs"],
   env: {
     node: true,
     jest: true,
+  },
+  // https://github.com/typescript-eslint/typescript-eslint/issues/251
+  parserOptions: {
+    project: ["./tsconfig.json"],
+    tsconfigRootDir: __dirname,
   },
   rules: {
     "@typescript-eslint/interface-name-prefix": "off",
