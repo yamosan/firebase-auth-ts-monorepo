@@ -1,12 +1,13 @@
 import type { FC } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-import { useAuthUser } from "@/context/AuthContext";
+import { auth } from "@/lib/firebase";
 
 export const ProtectedRoute: FC = () => {
-  const [user, { loading: userLoading }] = useAuthUser();
+  const [user, loading, _error] = useAuthState(auth);
 
-  if (userLoading) {
+  if (loading) {
     return <div>loading...</div>;
   }
 

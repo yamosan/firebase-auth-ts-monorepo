@@ -1,14 +1,17 @@
 import type { FC } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
-import { useAuthUser } from "@/context/AuthContext";
-import { useSignout } from "@/hooks/useSignout";
+import { auth } from "@/lib/firebase";
 
 export const BasicLayout: FC = () => {
-  const [user, { loading: userLoading }] = useAuthUser();
-  const [signout, { loading: signoutLoading }] = useSignout();
+  const [user, loading, _error] = useAuthState(auth);
+  const signout = () => {
+    signOut(auth);
+  };
 
-  if (userLoading || signoutLoading) {
+  if (loading) {
     return <div>loading...</div>;
   }
 

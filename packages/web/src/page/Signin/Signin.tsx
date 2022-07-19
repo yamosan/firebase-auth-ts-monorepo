@@ -1,11 +1,12 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
-import { useSignin } from "@/hooks/useSignin";
+import { auth } from "@/lib/firebase";
 
 export const Signin = () => {
-  const [signin, { loading, data, error }] = useSignin();
+  const [signin, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,7 @@ export const Signin = () => {
     signin(email, password);
   };
 
-  if (!loading && !error && !!data) {
+  if (!loading && !error && !!user) {
     return <Navigate to="/profile" />;
   }
 

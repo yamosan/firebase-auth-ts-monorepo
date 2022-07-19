@@ -1,11 +1,13 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
-import { useSignup } from "@/hooks/useSignup";
+import { auth } from "@/lib/firebase";
 
 export const Signup = () => {
-  const [signup, { loading, data, error }] = useSignup();
+  const [signup, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +17,7 @@ export const Signup = () => {
     signup(email, password);
   };
 
-  if (!loading && !error && !!data) {
+  if (!loading && !error && !!user) {
     return <Navigate to="/profile" />;
   }
 
